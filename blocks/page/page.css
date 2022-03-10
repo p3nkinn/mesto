@@ -1,0 +1,9 @@
+.page {
+  width: 1280px;
+  width: 100%;
+  min-height: 100%;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+  background-color: #000;
+}
