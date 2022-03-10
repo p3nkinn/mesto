@@ -1,0 +1,35 @@
+.profile__button-add {
+  width: 150px;
+  height: 50px;
+  border: 2px solid #fff;
+  border-radius: 2px;
+  background-color: #000;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+
+.profile__button-add::after {
+  position: absolute;
+  content: '';
+  width: 22px;
+  height: 2px;
+  top: 50%;
+  right: 64px;
+  background-color: #fff
+}
+
+.profile__button-add::before {
+  position: absolute;
+  content: '';
+  width: 22px;
+  height: 2px;
+  top: 50%;
+  right: 64px;
+  transform: rotate(90deg);
+  background-color: #fff
+}
+
+.profile__button-add:hover {
+  opacity: .6;
+}

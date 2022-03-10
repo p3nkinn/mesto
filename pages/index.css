@@ -12,3 +12,11 @@
 /* Profile */
 
 @import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__container/profile__container.css);
+@import url(../blocks/profile/__image/profile__image.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__title/profile__title.css);
+@import url(../blocks/profile/__subtitle/profile__subtitle.css);
+@import url(../blocks/profile/__button/profile__button-edit.css);
+@import url(../blocks/profile/__button/profile__button-add.css);
+@import url(../blocks/profile/__item/profile__item.css);
