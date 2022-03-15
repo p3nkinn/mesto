@@ -24,3 +24,17 @@
   height: 3px;
   transform: rotate(45deg);
 }
+
+@media screen and (max-width: 610px) {
+  .popup__close::before {
+    top: -16px;
+    right: 0;
+    width: 20px;
+  }
+
+  .popup__close::after {
+    top: -16px;
+    right: 0;
+    width: 20px;
+  }
+}

@@ -6,9 +6,18 @@
   cursor: pointer;
   padding: 0;
   align-self: flex-start;
-  margin-top: 32px;
+  margin-top: 14px;
+  grid-area: edit;
 }
 
 .profile__button-edit:hover {
   opacity: .6;
+}
+
+@media screen and (max-width: 610px) {
+  .profile__button-edit {
+    margin-top: 8px;
+    width: 18px;
+    height: 18px;
+  }
 }

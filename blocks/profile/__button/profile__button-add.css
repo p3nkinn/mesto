@@ -15,8 +15,9 @@
   width: 22px;
   height: 2px;
   top: 50%;
-  right: 64px;
-  background-color: #fff
+  right: 50%;
+  transform: translate(50%);
+  background-color: #fff;
 }
 
 .profile__button-add::before {
@@ -25,11 +26,34 @@
   width: 22px;
   height: 2px;
   top: 50%;
-  right: 64px;
-  transform: rotate(90deg);
-  background-color: #fff
+  right: 50%;
+  transform: translate(50%) rotate(90deg);
+  background-color: #fff;
 }
 
 .profile__button-add:hover {
   opacity: .6;
 }
+
+@media screen and (max-width: 768px) {
+  .profile__button-add {
+    margin-top: 36px;
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .profile__button-add {
+    width: 282px;
+  }
+
+  .profile__button-add::after {
+    width: 16px;
+  }
+
+  .profile__button-add::before {
+    width: 16px;
+
+  }
+}
+

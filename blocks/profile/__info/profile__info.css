@@ -1,5 +1,11 @@
 .profile__info {
-  display: flex;
-  flex-direction: column;
-  margin-right: 18px;
+  display: grid;
+  grid-template-areas: "title edit"
+                       "subtitle .";
+}
+
+@media screen and (max-width: 768px) {
+  .profile__info {
+    margin-top: 26px;
+  }
 }

@@ -11,3 +11,10 @@
   padding-bottom: 13px;
   outline: none;
 }
+
+@media screen and (max-width: 610px) {
+  .popup__name {
+    margin-top: 75px;
+    width: 238px;
+  }
+}

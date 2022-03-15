@@ -3,3 +3,9 @@
   width: 100%;
   min-height: 744px;
 }
+
+@media screen and (max-width: 610px) {
+  .elements {
+    padding-top: 36px;
+  }
+}

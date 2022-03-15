@@ -1,0 +1,11 @@
+@media screen and (max-width: 768px) {
+  .header__link {
+    padding-left: 27px;
+  }
+}
+
+@media screen and (max-width: 910px) {
+  .header__link {
+    padding-left: 15px;
+  }
+}
