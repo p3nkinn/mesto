@@ -18,8 +18,6 @@
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__title/profile__title.css);
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
-@import url(../blocks/profile/__button/profile__button-edit.css);
-@import url(../blocks/profile/__button/profile__button-add.css);
 @import url(../blocks/profile/__item/profile__item.css);
 
 /* Elements */
@@ -40,11 +38,16 @@
 /* Popup */
 
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/__overlay/popup__overlay.css);
 @import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__name/popup__name.css);
 @import url(../blocks/popup/__jobname/popup__jobname.css);
 @import url(../blocks/popup/__submit/popup__submit.css);
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+
+/* Button */
+
+@import url(../blocks/button/button__add.css);
+@import url(../blocks/button/button__edit.css);

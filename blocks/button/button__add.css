@@ -1,4 +1,4 @@
-.profile__button-add {
+.button__add {
   width: 150px;
   height: 50px;
   border: 2px solid #fff;
@@ -9,7 +9,7 @@
   padding: 0;
 }
 
-.profile__button-add::after {
+.button__add::after {
   position: absolute;
   content: '';
   width: 22px;
@@ -20,7 +20,7 @@
   background-color: #fff;
 }
 
-.profile__button-add::before {
+.button__add::before {
   position: absolute;
   content: '';
   width: 22px;
@@ -31,19 +31,19 @@
   background-color: #fff;
 }
 
-.profile__button-add:hover {
+.button__add:hover {
   opacity: .6;
 }
 
 @media screen and (max-width: 768px) {
-  .profile__button-add {
+  .button__add {
     margin-top: 36px;
     width: 200px;
   }
 }
 
 @media screen and (max-width: 610px) {
-  .profile__button-add {
+  .button__add {
     width: 282px;
   }
 

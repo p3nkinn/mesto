@@ -2,10 +2,10 @@
 
 const popup = document.querySelector('.popup'),
       popupClose = popup.querySelector('.popup__close'),
-      formElement = popup.querySelector('.popup__container'),
+      formElement = popup.querySelector('.popup__form'),
       nameInput = formElement.querySelector('.popup__name'),
       jobInput = formElement.querySelector('.popup__jobname'),
-      btnEdit = document.querySelector('.profile__button-edit'),
+      btnEdit = document.querySelector('.button__edit'),
       nameForm = document.querySelector('.profile__title'),
       jobForm = document.querySelector('.profile__subtitle');
 
@@ -35,7 +35,7 @@ function formSubmitHandler (evt) {
     nameForm.textContent = nameInput.value;
     jobForm.textContent = jobInput.value;
     document.addEventListener('keyup', onDocumentKeyUp);
-
+    popupClosed();
 }
 
 formElement.addEventListener('submit', formSubmitHandler);

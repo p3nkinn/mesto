@@ -7,21 +7,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 190px;
+  width: 215px;
 }
 
-@media screen and (max-width: 910px) {
-  .elements__title {
-    width: 220px;
-
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .elements__title {
-    width: 215px;
-
-  }
-}
 
 
