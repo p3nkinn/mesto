@@ -5,7 +5,7 @@ const popup = document.querySelector('.popup'),
       formElement = popup.querySelector('.popup__form'),
       nameInput = formElement.querySelector('.popup__name'),
       jobInput = formElement.querySelector('.popup__jobname'),
-      btnEdit = document.querySelector('.button__edit'),
+      btnEdit = document.querySelector('.profile__edit-button'),
       nameForm = document.querySelector('.profile__title'),
       jobForm = document.querySelector('.profile__subtitle');
 

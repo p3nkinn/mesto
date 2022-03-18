@@ -1,14 +1,15 @@
-.button__add {
+.profile__add-button {
   width: 150px;
   height: 50px;
   border: 2px solid #fff;
   border-radius: 2px;
   background-color: #000;
   position: relative;
-
+  cursor: pointer;
+  padding: 0;
 }
 
-.button__add::after {
+.profile__add-button::after {
   position: absolute;
   content: '';
   width: 22px;
@@ -19,7 +20,7 @@
   background-color: #fff;
 }
 
-.button__add::before {
+.profile__add-button::before {
   position: absolute;
   content: '';
   width: 22px;
@@ -30,27 +31,27 @@
   background-color: #fff;
 }
 
-.button__add:hover {
+.profile__add-button:hover {
   opacity: .6;
 }
 
 @media screen and (max-width: 768px) {
-  .button__add {
+  .profile__add-button {
     margin-top: 36px;
     width: 200px;
   }
 }
 
 @media screen and (max-width: 610px) {
-  .button__add {
+  .profile__add-button {
     width: 282px;
   }
 
-  .profile__button-add::after {
+  .profile__add-button::after {
     width: 16px;
   }
 
-  .profile__button-add::before {
+  .profile__add-button::before {
     width: 16px;
 
   }
