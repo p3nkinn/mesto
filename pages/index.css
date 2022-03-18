@@ -49,5 +49,5 @@
 
 /* Button */
 
-@import url(../blocks/button/button__add.css);
-@import url(../blocks/button/button__edit.css);
+@import url(../blocks/button/__add/button__add.css);
+@import url(../blocks/button/__edit/button__edit.css);
