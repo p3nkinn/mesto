@@ -1,4 +1,5 @@
 .profile__info {
+  width: 336px;
   display: grid;
   grid-template-areas: "title edit"
                        "subtitle .";
@@ -7,5 +8,11 @@
 @media screen and (max-width: 768px) {
   .profile__info {
     margin-top: 26px;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .profile__info {
+    width: 218px;
   }
 }

@@ -1,0 +1,6 @@
+@media screen and (max-width: 610px) {
+  .header__image {
+    width: 103px;
+    height: 24px;
+  }
+}

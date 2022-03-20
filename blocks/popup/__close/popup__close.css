@@ -1,40 +1,23 @@
 .popup__close {
+  position: absolute;
+  top: -37px;
+  right: -32px;
   cursor: pointer;
   border: none;
+  background: url('../../../img/Icon-close.svg') center center/cover no-repeat;
+  width: 32px;
+  height: 32px;
 }
 
-.popup__close::before {
-  content: '';
-  position: absolute;
-  top: -18px;
-  right: -32px;
-  background-color: #fff;
-  width: 32px;
-  height: 3px;
-  transform: rotate(-45deg);
-}
-
-.popup__close::after {
-  content: '';
-  position: absolute;
-  top: -18px;
-  right: -32px;
-  background-color: #fff;
-  width: 32px;
-  height: 3px;
-  transform: rotate(45deg);
+.popup__close:hover {
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 610px) {
-  .popup__close::before {
-    top: -16px;
-    right: 0;
+  .popup__close {
+    top: -35px;
+    right: 0px;
     width: 20px;
-  }
-
-  .popup__close::after {
-    top: -16px;
-    right: 0;
-    width: 20px;
+    height: 20px;
   }
 }

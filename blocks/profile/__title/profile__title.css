@@ -6,6 +6,9 @@
   margin: 0;
   grid-area: title;
   margin-right: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 610px) {
