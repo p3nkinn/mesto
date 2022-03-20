@@ -1,7 +1,7 @@
 .profile__edit-button {
   width: 24px;
   height: 24px;
-  background: url(../../../../img/button-edit.svg) center center/cover no-repeat;
+  background: url('../../../img/button-edit.svg') center center/cover no-repeat;
   border: 1px solid #fff;
   align-self: flex-start;
   margin-top: 14px;

@@ -23,6 +23,7 @@
 @media screen and (max-width: 610px) {
   .elements__list {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
 }
 
