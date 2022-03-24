@@ -1,0 +1,4 @@
+.elements__likes_active {
+  background: url('../../../../img/like-black.svg') center center/cover no-repeat;
+  opacity: 1;
+}
