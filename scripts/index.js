@@ -10,12 +10,12 @@ const popup = document.querySelector('.popup'),
       profileName = document.querySelector('.profile__title'),
       jobName = document.querySelector('.profile__subtitle'),
     // Форма с добавлением картинки и описания
-      newPlaces = document.querySelector('.popup__newplaces'),
+      newPlaces = document.querySelector('.popup_newplaces'),
       newPlacesForm = newPlaces.querySelector('.popup__new-form'),
       btnAdd = document.querySelector('.profile__add-button'),
       titleNameForm = document.querySelector('.popup__input_type_title'),
       linkNameForm = document.querySelector('.popup__input_type_link'),
-      formImage = document.querySelector('.popup__openimg'),
+      formImage = document.querySelector('.popup_openimg'),
       addImage = formImage.querySelector('.popup__image'),
       addSubtitle = formImage.querySelector('.popup__subtitle');
 
