@@ -29,48 +29,16 @@
     </section>
     <section class="elements">
       <ul class="elements__list">
+        <template class="template-item">
         <li class="elements__item">
-          <img src="./img/Tokyo.jpg" alt="Город Токио" class="elements__image">
+          <img src="." alt="Новое место" class="elements__image">
           <div class="elements__description">
-            <h3 class="elements__title">Токио</h3>
+            <h3 class="elements__title"></h3>
             <button type="button" class="elements__likes" aria-label="лайк"></button>
           </div>
+          <button type="button" class="elements__remove" aria-label="удалить"></button>
         </li>
-        <li class="elements__item">
-          <img src="./img/Mercedes-Benz-AMG-C63S.jpg" alt="Спортивный автомобиль" class="elements__image">
-          <div class="elements__description">
-            <h3 class="elements__title">Мерседес-Бенз</h3>
-            <button type="button" class="elements__likes" aria-label="лайк"></button>
-          </div>
-        </li>
-        <li class="elements__item">
-          <img src="./img/New-York.jpg" alt="Снимок в городе Нью-Йорке" class="elements__image">
-          <div class="elements__description">
-            <h3 class="elements__title">Нью-Йорк</h3>
-            <button type="button" class="elements__likes" aria-label="лайк"></button>
-          </div>
-        </li>
-        <li class="elements__item">
-          <img src="./img/the-colors-india.jpg" alt="Праздник красок в Индии" class="elements__image">
-          <div class="elements__description">
-            <h3 class="elements__title">Фестиваль-Холи</h3>
-            <button type="button" class="elements__likes" aria-label="лайк"></button>
-          </div>
-        </li>
-        <li class="elements__item">
-          <img src="./img/Taj-Mahal.jpg" alt="Гробница Хумаюна в Индии" class="elements__image">
-          <div class="elements__description">
-            <h3 class="elements__title">Гробница-Хумаюна</h3>
-            <button type="button" class="elements__likes" aria-label="лайк"></button>
-          </div>
-        </li>
-        <li class="elements__item">
-          <img src="./img/El-Acebo-spain.jpg" alt="Вечерний переулок в Испании" class="elements__image">
-          <div class="elements__description">
-            <h3 class="elements__title">Темный переулок</h3>
-            <button type="button" class="elements__likes" aria-label="лайк"></button>
-          </div>
-        </li>
+      </template>
       </ul>
     </section>
   </main>
@@ -90,7 +58,7 @@
     </div>
     <div class="popup popup__new-places">
       <div class="popup__container">
-        <form name="editForm" action="#" class="popup__form">
+        <form name="editForm" action="#" class="popup__form popup__new-form">
         <h2 class="popup__title">Новое место</h2>
         <input name="title" placeholder="Название" type="text" class="popup__input popup__input_type_title">
         <input name="link" placeholder="Ссылка на картинку" type="text" class="popup__input popup__input_type_link">
@@ -98,6 +66,15 @@
         <button type="button" class="popup__close" aria-label="закрыть"></button>
       </form>
       </div>
+  </div>
+  <div class="popup popup__open-image">
+    <div class="popup__container">
+      <div class="popup__photo">
+      <img src="." alt="." class="popup__image">
+      <h2 class="popup__subtitle"></h2>
+      <button type="button" class="popup__close" aria-label="закрыть"></button>
+    </div>
+  </div>
   </div>
   <script src="./scripts/index.js"></script>
 </body>

@@ -1,0 +1,22 @@
+.popup__photo {
+  max-width: 600px;
+  position: relative;
+}
+
+@media screen and (max-width: 910px) {
+  .popup__photo {
+    max-width: 500px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .popup__photo {
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .popup__photo {
+    max-width: 280px;
+  }
+}
