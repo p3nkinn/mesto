@@ -4,7 +4,7 @@ const popup = document.querySelector('.popup'),
     // Попап редактирования профиля
       profilePopup = document.querySelector('.popup_profile'),
       popupClose = document.querySelectorAll('.popup__close'),
-      profileForm = profilePopup.querySelector('.popup_form_profile'),
+      profileForm = profilePopup.querySelector('.popup__form_profile'),
       nameInput = profileForm.querySelector('.popup__input_type_username'),
       jobInput = profileForm.querySelector('.popup__input_type_userjob'),
       btnEdit = document.querySelector('.profile__edit-button'),
