@@ -45,9 +45,9 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_profile">
         <div class="popup__container">
-          <form name="editForm" action="#" class="popup__form">
+          <form name="editForm" action="#" class="popup__form popup_profile-form">
           <h2 class="popup__title">Редактировать профиль</h2>
           <input name="username" type="text" class="popup__input popup__input_type_username">
           <input name="userjob" type="text" class="popup__input popup__input_type_userjob">
@@ -70,12 +70,13 @@
   <div class="popup popup_openimg">
     <div class="popup__container">
       <div class="popup__photo">
-      <img src="." alt="." class="popup__image">
+      <img src="." alt="Полное изоброжение" class="popup__image">
       <p class="popup__subtitle"></p>
       <button type="button" class="popup__close" aria-label="закрыть"></button>
     </div>
   </div>
   </div>
+  <script src="./scripts/cards.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

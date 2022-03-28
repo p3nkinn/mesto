@@ -1,11 +1,12 @@
 "use strict"
 
-    // Попап редактирования профиля
 const popup = document.querySelector('.popup'),
+    // Попап редактирования профиля
+      profilePopup = document.querySelector('.popup_profile'),
       popupClose = document.querySelectorAll('.popup__close'),
-      formElement = popup.querySelector('.popup__form'),
-      nameInput = formElement.querySelector('.popup__input_type_username'),
-      jobInput = formElement.querySelector('.popup__input_type_userjob'),
+      profileForm = profilePopup.querySelector('.popup_profile-form'),
+      nameInput = profileForm.querySelector('.popup__input_type_username'),
+      jobInput = profileForm.querySelector('.popup__input_type_userjob'),
       btnEdit = document.querySelector('.profile__edit-button'),
       profileName = document.querySelector('.profile__title'),
       jobName = document.querySelector('.profile__subtitle'),
@@ -20,60 +21,25 @@ const popup = document.querySelector('.popup'),
       addSubtitle = formImage.querySelector('.popup__subtitle');
 
 
-const initialCards = [
-  {
-    name: 'Бургер',
-    link: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=699&q=80'
-  },
-  {
-    name: 'Паста',
-    link: 'https://images.unsplash.com/photo-1579684947550-22e945225d9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
-  },
-  {
-    name: 'Хачапури',
-    link: 'https://images.unsplash.com/photo-1612950365425-dbf12ef9a1a8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
-  },
-  {
-    name: 'Биг Мак',
-    link: 'https://images.unsplash.com/photo-1548946522-4a313e8972a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=859&q=80'
-  },
-  {
-    name: 'Чизкейк',
-    link: 'https://images.unsplash.com/photo-1619985632461-f33748ef8f3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=775&q=80'
-  },
-  {
-    name: 'Говяжий стейк',
-    link: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
-  }
-];
       // Создаем карточки массива initialCards
 const templateContainer = document.querySelector('.elements__list');
-
 const createCard = (itemCard) => {
   const template = document.querySelector('.template-item').content;
   const cardElements = template.querySelector('.elements__item').cloneNode(true);
-        cardElements.querySelectorAll('.elements__image').forEach(item => {
-          item.src = itemCard.link;
-          item.addEventListener('click',() => {
-            formImage.classList.add('popup_opened');
-            addImage.src = itemCard.link;
-            addSubtitle.textContent = itemCard.name;
-          });
-        });
         cardElements.querySelector('.elements__title').textContent = itemCard.name;
-        cardElements.querySelectorAll('.elements__remove').forEach(item => {
-          item.addEventListener('click', (e) => {
-            e.preventDefault();
-            item.closest('.elements__item');
+        cardElements.querySelector('.elements__image').src = itemCard.link;
+        cardElements.querySelector('.elements__image').addEventListener('click', () => {
+          addImage.src = itemCard.link;
+          addSubtitle.textContent = itemCard.name;
+          openPopup(formImage);
+        });
+        cardElements.src = itemCard.link
+        cardElements.querySelector('.elements__remove').addEventListener('click', () => {
             cardElements.remove();
-          });
         });
-        cardElements.querySelectorAll('.elements__likes').forEach(item => {
-          item.addEventListener('click', () => {
-            item.classList.toggle('elements__likes_active');
-          });
+        cardElements.querySelector('.elements__likes').addEventListener('click', (e) => {
+            e.target.classList.toggle('elements__likes_active');
         });
-
         return cardElements;
 };
 
@@ -87,32 +53,38 @@ const elements = initialCards.map(itemCard => {
 
 templateContainer.append(...elements);
 
-const openPopup = () => {
-  popup.classList.add('popup_opened');
+const openProfilePopup = () => {
+  openPopup(profilePopup);
   nameInput.value = profileName.textContent;
   jobInput.value = jobName.textContent;
 }
 
-const openPopupNewPlace = () => {
-  newPlaces.classList.add('popup_opened');
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
 }
 
-const closePopup = () => {
-  popupClose.forEach(item => {
-    item.addEventListener('click', () => {
-      popup.classList.remove('popup_opened');
-      newPlaces.classList.remove('popup_opened');
-      formImage.classList.remove('popup_opened');
-    });
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+
+}
+
+popupClose.forEach(item => {
+  item.addEventListener('click', () => {
+    closePopup(profilePopup);
+    closePopup(newPlaces);
+    closePopup(formImage);
   });
-}
-closePopup()
+});
 
-const formSubmitHandler = (e) => {
+const openPopupNewPlace = () => {
+ openPopup(newPlaces);
+}
+
+const submitProfileForm = (e) => {
     e.preventDefault();
     profileName.textContent = nameInput.value;
     jobName.textContent = jobInput.value;
-    popup.classList.remove('popup_opened');
+   closePopup(profilePopup);
 }
 
 const formSubmitEditForm = (e) => {
@@ -123,10 +95,10 @@ const formSubmitEditForm = (e) => {
   linkNameForm.value = '';
   titleNameForm.value = '';
   renderCard(itemCard);
-  newPlaces.classList.remove('popup_opened');
+  closePopup(newPlaces);
 };
 
-formElement.addEventListener('submit', formSubmitHandler);
+profileForm.addEventListener('submit', submitProfileForm);
 newPlacesForm.addEventListener('submit' , formSubmitEditForm);
-btnEdit.addEventListener('click', openPopup);
+btnEdit.addEventListener('click', openProfilePopup);
 btnAdd.addEventListener('click', openPopupNewPlace);
