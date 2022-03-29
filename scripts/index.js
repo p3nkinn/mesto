@@ -1,8 +1,6 @@
 "use strict"
-
-const popup = document.querySelector('.popup'),
-    // Попап редактирования профиля
-      profilePopup = document.querySelector('.popup_profile'),
+      // Попап редактирования профиля
+const profilePopup = document.querySelector('.popup_profile'),
       popupClose = document.querySelectorAll('.popup__close'),
       profileForm = profilePopup.querySelector('.popup__form_profile'),
       nameInput = profileForm.querySelector('.popup__input_type_username'),
@@ -19,7 +17,6 @@ const popup = document.querySelector('.popup'),
       formImage = document.querySelector('.popup_openimg'),
       addImage = formImage.querySelector('.popup__image'),
       addSubtitle = formImage.querySelector('.popup__subtitle');
-
 
       // Создаем карточки массива initialCards
 const templateContainer = document.querySelector('.elements__list');
@@ -71,7 +68,11 @@ function closePopup(popup) {
 popupClose.forEach(item => {
   item.addEventListener('click', () => {
     closePopup(profilePopup);
+  });
+  item.addEventListener('click', () => {
     closePopup(newPlaces);
+  });
+  item.addEventListener('click', () => {
     closePopup(formImage);
   });
 });
@@ -81,10 +82,10 @@ const openPopupNewPlace = () => {
 }
 
 const submitProfileForm = (e) => {
-    e.preventDefault();
-    profileName.textContent = nameInput.value;
-    jobName.textContent = jobInput.value;
-   closePopup(profilePopup);
+  e.preventDefault();
+  profileName.textContent = nameInput.value;
+  jobName.textContent = jobInput.value;
+  closePopup(profilePopup);
 }
 
 const formSubmitEditForm = (e) => {
