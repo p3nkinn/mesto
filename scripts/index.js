@@ -1,7 +1,7 @@
 "use strict"
       // Попап редактирования профиля
 const profilePopup = document.querySelector('.popup_profile'),
-      popupClose = document.querySelectorAll('.popup__close'),
+      profileClose = profilePopup.querySelector('.popup__close_profile'),
       profileForm = profilePopup.querySelector('.popup__form_profile'),
       nameInput = profileForm.querySelector('.popup__input_type_username'),
       jobInput = profileForm.querySelector('.popup__input_type_userjob'),
@@ -11,11 +11,13 @@ const profilePopup = document.querySelector('.popup_profile'),
     // Форма с добавлением картинки и описания
       newPlaces = document.querySelector('.popup_newplaces'),
       newPlacesForm = newPlaces.querySelector('.popup__new-form'),
+      newPlacesClose = newPlaces.querySelector('.popup__close_newplaces'),
       btnAdd = document.querySelector('.profile__add-button'),
       titleNameForm = document.querySelector('.popup__input_type_title'),
       linkNameForm = document.querySelector('.popup__input_type_link'),
       formImage = document.querySelector('.popup_openimg'),
       addImage = formImage.querySelector('.popup__image'),
+      formImageClose = formImage.querySelector('.popup__close_openimg'),
       addSubtitle = formImage.querySelector('.popup__subtitle');
 
       // Создаем карточки массива initialCards
@@ -65,16 +67,16 @@ function closePopup(popup) {
 
 }
 
-popupClose.forEach(item => {
-  item.addEventListener('click', () => {
-    closePopup(profilePopup);
-  });
-  item.addEventListener('click', () => {
-    closePopup(newPlaces);
-  });
-  item.addEventListener('click', () => {
-    closePopup(formImage);
-  });
+profileClose.addEventListener('click', () => {
+  closePopup(profilePopup);
+});
+
+newPlacesClose.addEventListener('click', () => {
+  closePopup(newPlaces);
+});
+
+formImageClose.addEventListener('click', () => {
+  closePopup(formImage);
 });
 
 const openPopupNewPlace = () => {
