@@ -1,4 +1,5 @@
-"use strict"
+"use strict";
+
       // Попап редактирования профиля
 const profilePopup = document.querySelector('.popup_profile'),
       profileClose = profilePopup.querySelector('.popup__close_profile'),
@@ -32,7 +33,7 @@ const createCard = (itemCard) => {
           addSubtitle.textContent = itemCard.name;
           openPopup(formImage);
         });
-        cardElements.src = itemCard.link
+        cardElements.src = itemCard.link;
         cardElements.querySelector('.elements__remove').addEventListener('click', () => {
             cardElements.remove();
         });
@@ -56,7 +57,7 @@ const openProfilePopup = () => {
   openPopup(profilePopup);
   nameInput.value = profileName.textContent;
   jobInput.value = jobName.textContent;
-}
+};
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -81,14 +82,14 @@ formImageClose.addEventListener('click', () => {
 
 const openPopupNewPlace = () => {
  openPopup(newPlaces);
-}
+};
 
 const submitProfileForm = (e) => {
   e.preventDefault();
   profileName.textContent = nameInput.value;
   jobName.textContent = jobInput.value;
   closePopup(profilePopup);
-}
+};
 
 const formSubmitEditForm = (e) => {
   e.preventDefault();
@@ -105,3 +106,5 @@ profileForm.addEventListener('submit', submitProfileForm);
 newPlacesForm.addEventListener('submit' , formSubmitEditForm);
 btnEdit.addEventListener('click', openProfilePopup);
 btnAdd.addEventListener('click', openPopupNewPlace);
+
+
