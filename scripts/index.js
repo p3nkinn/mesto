@@ -100,6 +100,7 @@ const formSubmitEditForm = (e) => {
   titleNameForm.value = '';
   renderCard(itemCard);
   closePopup(newPlaces);
+  enableValidation(newPlaces);
 };
 
 profileForm.addEventListener('submit', submitProfileForm);
