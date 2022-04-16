@@ -61,11 +61,12 @@ const openProfilePopup = () => {
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeFormEscape);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-
+  document.removeEventListener('keydown', closeFormEscape);
 }
 
 profileClose.addEventListener('click', () => {
@@ -91,6 +92,26 @@ const submitProfileForm = (e) => {
   closePopup(profilePopup);
 };
 
+// Закрытие попап вне элемента
+
+const popupList = Array.from(document.querySelectorAll('.popup'));
+popupList.forEach(popup => {
+  popup.addEventListener('mousedown', e => {
+    if (e.target.classList.contains('popup__container')) {
+      closePopup(popup);
+    }
+  });
+});
+
+// Закртыие попап на ESC
+
+const closeFormEscape = (e) => {
+  if (e.key === 'Escape') {
+    const currentPopup = document.querySelector('.popup_opened');
+    closePopup(currentPopup);
+  }
+};
+
 const formSubmitEditForm = (e) => {
   e.preventDefault();
   const itemCard = initialCards;
@@ -100,7 +121,6 @@ const formSubmitEditForm = (e) => {
   titleNameForm.value = '';
   renderCard(itemCard);
   closePopup(newPlaces);
-  enableValidation(newPlaces);
 };
 
 profileForm.addEventListener('submit', submitProfileForm);
