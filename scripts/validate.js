@@ -9,8 +9,6 @@ const validationConfig = {
   errorClass: 'popup__error_visible'
 }
 
-const formElement = document.querySelector(validationConfig.formSelector);
-
 const showErrorInput = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(validationConfig.inputErrorClass);
@@ -61,21 +59,14 @@ const toogleButtonElement = (inputList, buttonElement) => {
   }
 }
 
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll(validationConfig.formSelector));
+const enableValidation = ({formSelector , ...rest}) => {
+  const formList = Array.from(document.querySelectorAll(formSelector));
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', (e) => {
       e.preventDefault();
     });
-    setEventListeners(formElement);
+    setEventListeners(formElement, rest);
   });
 };
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-});
+enableValidation(validationConfig);
