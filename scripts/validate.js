@@ -12,14 +12,14 @@ const validationConfig = {
 const formElement = document.querySelector(validationConfig.formSelector);
 
 const showErrorInput = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-errors`);
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(validationConfig.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(validationConfig.errorClass);
 };
 
 const hideErrorInput = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-errors`);
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(validationConfig.inputErrorClass);
   errorElement.classList.remove(validationConfig.errorClass);
   errorElement.textContent = '';
