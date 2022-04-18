@@ -7,7 +7,7 @@ const validationConfig = {
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
-}
+};
 
 const showErrorInput = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -31,7 +31,7 @@ const isValid = (formElement, inputElement) => {
   }
 };
 
-const setEventListeners = (formElement) => {
+const setEventListeners = (formElement, validationConfig) => {
   const inputList = Array.from(formElement.querySelectorAll(validationConfig.inputSelector));
   const buttonElement = formElement.querySelector(validationConfig.submitButtonSelector);
   toogleButtonElement(inputList, buttonElement);
@@ -57,7 +57,15 @@ const toogleButtonElement = (inputList, buttonElement) => {
     buttonElement.classList.remove(validationConfig.inactiveButtonClass);
     buttonElement.disabled = false;
   }
-}
+};
+
+const disableButton = (formElement) => {
+  const button = formElement.querySelector('.popup__button');
+  if (button) {
+    button.classList.add('popup__button_disabled');
+    button.disabled = true;
+  }
+};
 
 const enableValidation = ({formSelector , ...rest}) => {
   const formList = Array.from(document.querySelectorAll(formSelector));
