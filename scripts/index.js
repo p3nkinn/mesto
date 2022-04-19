@@ -128,7 +128,7 @@ const handleCardFormSubmit = (e) => {
   itemCard.name = titleNameForm.value;
   renderCard(itemCard);
   newPlacesForm.reset();
-  disableButton(newPlaces)
+  disableButton(newPlaces, validationConfig);
   closePopup(newPlaces);
 };
 
