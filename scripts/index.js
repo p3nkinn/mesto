@@ -22,50 +22,57 @@ const profilePopup = document.querySelector(".popup_profile"),
   addSubtitle = imagePopup.querySelector(".popup__subtitle");
 
 // Создаем карточки массива initialCards
-const templateContainer = document.querySelector(".elements__list");
-const createCard = (itemCard) => {
-  const template = document.querySelector(".template-item").content;
-  const cardElements = template
-    .querySelector(".elements__item")
-    .cloneNode(true);
-  const imageElement = cardElements.querySelector(".elements__image");
-  cardElements.querySelector(".elements__title").textContent = itemCard.name;
-  imageElement.src = itemCard.link;
-  imageElement.alt = itemCard.name;
-  imageElement.addEventListener("click", () => {
-    addImage.src = itemCard.link;
-    addImage.alt = itemCard.name;
-    addSubtitle.textContent = itemCard.name;
-    openPopup(imagePopup);
-  });
-  cardElements
-    .querySelector(".elements__remove")
-    .addEventListener("click", () => {
-      cardElements.remove();
-    });
-  cardElements
-    .querySelector(".elements__likes")
-    .addEventListener("click", (e) => {
-      e.target.classList.toggle("elements__likes_active");
-    });
-  return cardElements;
-};
+// const templateContainer = document.querySelector(".elements__list");
+// const createCard = (itemCard) => {
+//   const template = document.querySelector(".template-item").content;
+//   const cardElements = template
+//     .querySelector(".elements__item")
+//     .cloneNode(true);
+//   const imageElement = cardElements.querySelector(".elements__image");
+//   cardElements.querySelector(".elements__title").textContent = itemCard.name;
+//   imageElement.src = itemCard.link;
+//   imageElement.alt = itemCard.name;
+//   imageElement.addEventListener("click", () => {
+//     addImage.src = itemCard.link;
+//     addImage.alt = itemCard.name;
+//     addSubtitle.textContent = itemCard.name;
+//     openPopup(imagePopup);
+//   });
+//   cardElements
+//     .querySelector(".elements__remove")
+//     .addEventListener("click", () => {
+//       cardElements.remove();
+//     });
+//   cardElements
+//     .querySelector(".elements__likes")
+//     .addEventListener("click", (e) => {
+//       e.target.classList.toggle("elements__likes_active");
+//     });
+//   return cardElements;
+// };
 
-const renderCard = (itemCard) => {
-  templateContainer.prepend(createCard(itemCard));
-};
+// const renderCard = (itemCard) => {
+//   templateContainer.prepend(createCard(itemCard));
+// };
 
-const elements = initialCards.map((itemCard) => {
-  return createCard(itemCard);
-});
+// const elements = initialCards.map((itemCard) => {
+//   return createCard(itemCard);
+// });
 
-templateContainer.append(...elements);
+// templateContainer.append(...elements);
 
 const openProfilePopup = () => {
   openPopup(profilePopup);
   nameInput.value = profileName.textContent;
   jobInput.value = jobName.textContent;
 };
+
+const popupPictureImage = (name, link) => {
+    addImage.src = link;
+    addImage.alt = name;
+    addSubtitle.textContent = name;
+    openPopup(imagePopup);
+}
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
@@ -126,7 +133,6 @@ const handleCardFormSubmit = (e) => {
   const itemCard = {};
   itemCard.link = linkNameForm.value;
   itemCard.name = titleNameForm.value;
-  renderCard(itemCard);
   newPlacesForm.reset();
   disableButton(newPlaces, validationConfig);
   closePopup(newPlaces);

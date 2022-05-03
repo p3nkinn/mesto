@@ -26,3 +26,37 @@ const initialCards = [
     link: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
   }
 ];
+
+class Card {
+  constructor(data, cardSelector) {
+    this._name = data.name;
+    this._link = data.link;
+    this._imageElement = data.imageElement;
+    this._cardSelector = cardSelector;
+  }
+
+  _getTemplate() {
+    const cardElements = document.querySelector(this._cardSelector)
+    .content
+    .querySelector('.elements__item')
+    .cloneNode(true);
+    return cardElements;
+  }
+
+  generateCard() {
+    this._element = this._getTemplate();
+    this._element.querySelector(".elements__title").textContent = this._name;
+    this._element.querySelector(".elements__image");
+    this._element.src = this._link;
+    this._element.alt = this._name;
+    return this._element;
+  }
+}
+
+initialCards.forEach(item => {
+  const card = new Card(item, '.template-item');
+  const cardElement = card.generateCard();
+  document.body.append(cardElement);
+
+});
+
