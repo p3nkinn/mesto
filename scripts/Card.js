@@ -1,4 +1,6 @@
 "use strict";
+import {popupImageOpen} from './index.js'
+
 
 const initialCards = [
   {
@@ -27,7 +29,7 @@ const initialCards = [
   }
 ];
 const templateContainer = document.querySelector(".elements__list");
-class Card {
+export default class Card {
   constructor(data, CardSelector) {
     this._link = data.link;
     this._name = data.name;
@@ -35,11 +37,10 @@ class Card {
   }
 
   _setEventListeners() {
-    this._element.addEventListener("click", () => {
-    addImage.src = this._link;
-    addImage.alt = this._name;
-    addSubtitle.textContent = this._name;
-    openPopup(imagePopup);
+    this._element
+    .querySelector(".elements__image")
+    .addEventListener("click", () => {
+    popupImageOpen(this._name, this._link);
     });
     this._element
     .querySelector(".elements__remove")
@@ -64,19 +65,24 @@ class Card {
     this._element = this._getTemplate();
     this._setEventListeners();
     this._element.querySelector(".elements__title").textContent = this._name;
-    const imageElement = this._element.querySelector(".elements__image");
-    imageElement.src = this._link;
-    imageElement.alt = this._name;
+    this._cardImage = this._element.querySelector(".elements__image");
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
     return this._element;
   }
 
+  renderCard = (itemCard) => {
+    templateContainer.prepend(this.generateCard(itemCard));
+  }
 }
 
-const renderElement = () => {
-  initialCards.forEach(item => {
-    const card = new Card(item, ".template-item");
-    const cardElement = card.generateCard();
-    templateContainer.append(cardElement);
-  });
-}
-renderElement();
+const renderElements = () => {
+  initialCards.map((item) => {
+  const card = new Card(item, ".template-item")
+  const cardElement = card.generateCard(item);
+  templateContainer.append(cardElement);
+});
+};
+
+renderElements()
+

@@ -1,4 +1,6 @@
 "use strict";
+import Card from './Card.js';
+import formValidator from './FormValidator.js';
 
 // Попап редактирования профиля
 const profilePopup = document.querySelector(".popup_profile"),
@@ -55,6 +57,13 @@ const openPopupNewPlace = () => {
   openPopup(newPlaces);
 };
 
+export const popupImageOpen = (name, link) => {
+  openPopup(imagePopup);
+  addImage.src = link;
+  addImage.alt = name;
+  addSubtitle.textContent = name;
+}
+
 const submitProfileForm = (e) => {
   e.preventDefault();
   profileName.textContent = nameInput.value;
@@ -87,7 +96,6 @@ const handleCardFormSubmit = (e) => {
   const itemCard = {};
   itemCard.link = linkNameForm.value;
   itemCard.name = titleNameForm.value;
-  valid.disableButton(newPlaces, validationConfig);
   newPlacesForm.reset();
   closePopup(newPlaces);
 };
