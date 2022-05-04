@@ -1,6 +1,6 @@
 "use strict";
-import {popupImageOpen} from './index.js'
-
+import {popupImageOpen , closePopup, newPlaces} from './index.js'
+import FormValidator, {buttonDisabled} from './FormValidator.js'
 
 const initialCards = [
   {
@@ -37,14 +37,6 @@ export default class Card {
   addCard = (card) => {
     this._cardSelector.prepend(card);
   }
-
-  // _getTemplate() {
-  //   const cardElements = document.querySelector(this._cardSelector).content
-  //   .querySelector(".elements__item")
-  //   .cloneNode(true);
-  //   return cardElements;
-  // }
-
 }
 
 class CardListItem {
@@ -99,6 +91,10 @@ class CardForm {
     const data = Object.fromEntries(new FormData(e.target));
     this._onAddItem(data);
     e.target.reset();
+    buttonDisabled.disableButton(newPlaces);
+    closePopup(newPlaces);
+
+
   }
 }
 

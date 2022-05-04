@@ -1,6 +1,9 @@
 "use strict";
 import Card from './Card.js';
 import formValidator from './FormValidator.js';
+export {popupImageOpen , closePopup, newPlaces}
+
+
 
 // Попап редактирования профиля
 const profilePopup = document.querySelector(".popup_profile"),
@@ -13,11 +16,8 @@ const profilePopup = document.querySelector(".popup_profile"),
   jobName = document.querySelector(".profile__subtitle"),
   // Форма с добавлением картинки и описания
   newPlaces = document.querySelector(".popup_newplaces"),
-  newPlacesForm = newPlaces.querySelector(".popup__new-form"),
   newPlacesClose = newPlaces.querySelector(".popup__close_newplaces"),
   btnAdd = document.querySelector(".profile__add-button"),
-  titleNameForm = document.querySelector(".popup__input_type_title"),
-  linkNameForm = document.querySelector(".popup__input_type_link"),
   imagePopup = document.querySelector(".popup_openimg"),
   addImage = imagePopup.querySelector(".popup__image"),
   imagePopupClose = imagePopup.querySelector(".popup__close_openimg"),
@@ -57,7 +57,7 @@ const openPopupNewPlace = () => {
   openPopup(newPlaces);
 };
 
-export const popupImageOpen = (name, link) => {
+const popupImageOpen = (name, link) => {
   openPopup(imagePopup);
   addImage.src = link;
   addImage.alt = name;

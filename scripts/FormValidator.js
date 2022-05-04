@@ -1,4 +1,5 @@
 "use strict";
+export {buttonDisabled}
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -87,9 +88,9 @@ export default class FormValidator {
     });
   }
 }
-// const buttonValidator = new FormValidator(validationConfig);
+const buttonDisabled = new FormValidator(validationConfig, ".popup__new-form");
 const profileFormValidator = new FormValidator(validationConfig, ".popup__form_profile");
-const newPlacesFormValidator = new FormValidator(validationConfig, ".popup__new-form")
+const newPlacesFormValidator = new FormValidator(validationConfig, ".popup__new-form");
 profileFormValidator.enableValidation();
 newPlacesFormValidator.enableValidation();
 
