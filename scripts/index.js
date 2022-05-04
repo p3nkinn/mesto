@@ -91,17 +91,7 @@ const handleEscape = (e) => {
   }
 };
 
-const handleCardFormSubmit = (e) => {
-  e.preventDefault();
-  const itemCard = {};
-  itemCard.link = linkNameForm.value;
-  itemCard.name = titleNameForm.value;
-  newPlacesForm.reset();
-  closePopup(newPlaces);
-};
-
 profileForm.addEventListener("submit", submitProfileForm);
-newPlacesForm.addEventListener("submit", handleCardFormSubmit);
 btnEdit.addEventListener("click", openProfilePopup);
 btnAdd.addEventListener("click", openPopupNewPlace);
 
