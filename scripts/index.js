@@ -1,4 +1,9 @@
 "use strict";
+import Card from './Card.js';
+import formValidator from './FormValidator.js';
+export {popupImageOpen , closePopup, newPlaces}
+
+
 
 // Попап редактирования профиля
 const profilePopup = document.querySelector(".popup_profile"),
@@ -11,55 +16,13 @@ const profilePopup = document.querySelector(".popup_profile"),
   jobName = document.querySelector(".profile__subtitle"),
   // Форма с добавлением картинки и описания
   newPlaces = document.querySelector(".popup_newplaces"),
-  newPlacesForm = newPlaces.querySelector(".popup__new-form"),
   newPlacesClose = newPlaces.querySelector(".popup__close_newplaces"),
   btnAdd = document.querySelector(".profile__add-button"),
-  titleNameForm = document.querySelector(".popup__input_type_title"),
-  linkNameForm = document.querySelector(".popup__input_type_link"),
   imagePopup = document.querySelector(".popup_openimg"),
   addImage = imagePopup.querySelector(".popup__image"),
   imagePopupClose = imagePopup.querySelector(".popup__close_openimg"),
   addSubtitle = imagePopup.querySelector(".popup__subtitle");
 
-// Создаем карточки массива initialCards
-// const templateContainer = document.querySelector(".elements__list");
-// const createCard = (itemCard) => {
-//   const template = document.querySelector(".template-item").content;
-//   const cardElements = template
-//     .querySelector(".elements__item")
-//     .cloneNode(true);
-//   const imageElement = cardElements.querySelector(".elements__image");
-//   cardElements.querySelector(".elements__title").textContent = itemCard.name;
-//   imageElement.src = itemCard.link;
-//   imageElement.alt = itemCard.name;
-//   imageElement.addEventListener("click", () => {
-//     addImage.src = itemCard.link;
-//     addImage.alt = itemCard.name;
-//     addSubtitle.textContent = itemCard.name;
-//     openPopup(imagePopup);
-//   });
-//   cardElements
-//     .querySelector(".elements__remove")
-//     .addEventListener("click", () => {
-//       cardElements.remove();
-//     });
-//   cardElements
-//     .querySelector(".elements__likes")
-//     .addEventListener("click", (e) => {
-//       e.target.classList.toggle("elements__likes_active");
-//     });
-//   return cardElements;
-// };
-
-// const renderCard = (itemCard) => {
-//   templateContainer.prepend(createCard(itemCard));
-// };
-
-// const elements = initialCards.map((itemCard) => {
-//   return createCard(itemCard);
-// });
-
-// templateContainer.append(...elements);
 
 const openProfilePopup = () => {
   openPopup(profilePopup);
@@ -101,6 +64,13 @@ const openPopupNewPlace = () => {
   openPopup(newPlaces);
 };
 
+const popupImageOpen = (name, link) => {
+  openPopup(imagePopup);
+  addImage.src = link;
+  addImage.alt = name;
+  addSubtitle.textContent = name;
+}
+
 const submitProfileForm = (e) => {
   e.preventDefault();
   profileName.textContent = nameInput.value;
@@ -128,18 +98,8 @@ const handleEscape = (e) => {
   }
 };
 
-const handleCardFormSubmit = (e) => {
-  e.preventDefault();
-  const itemCard = {};
-  itemCard.link = linkNameForm.value;
-  itemCard.name = titleNameForm.value;
-  newPlacesForm.reset();
-  disableButton(newPlaces, validationConfig);
-  closePopup(newPlaces);
-};
-
 profileForm.addEventListener("submit", submitProfileForm);
-newPlacesForm.addEventListener("submit", handleCardFormSubmit);
 btnEdit.addEventListener("click", openProfilePopup);
 btnAdd.addEventListener("click", openPopupNewPlace);
+
 
