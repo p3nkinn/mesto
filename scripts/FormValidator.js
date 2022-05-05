@@ -1,14 +1,4 @@
 "use strict";
-export {buttonDisabled}
-
-const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-};
 
 export default class FormValidator {
   constructor(config, formSelector) {
@@ -79,20 +69,13 @@ export default class FormValidator {
   }
 
   enableValidation = () => {
-    const formList = Array.from(document.querySelectorAll(this._formSelector));
-    formList.forEach((formElement) => {
-      formElement.addEventListener('submit', (e) => {
+    const formList = document.querySelector(this._formSelector);
+    formList.addEventListener('submit', (e) => {
         e.preventDefault();
       });
-      this._setEventListeners(formElement);
-    });
+      this._setEventListeners(formList);
   }
 }
-const buttonDisabled = new FormValidator(validationConfig, ".popup__new-form");
-const profileFormValidator = new FormValidator(validationConfig, ".popup__form_profile");
-const newPlacesFormValidator = new FormValidator(validationConfig, ".popup__new-form");
-profileFormValidator.enableValidation();
-newPlacesFormValidator.enableValidation();
 
 
 
