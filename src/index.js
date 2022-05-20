@@ -30,8 +30,8 @@ const
   templateSelector = ".elements__list";
 
 const openProfilePopup = () => {
-  profileFormValidator.resetValidation();
   const profilePopup = new Popup(".popup_profile");
+  profileFormValidator.resetValidation();
   profilePopup.open();
   profilePopup.setEventListeners();
   nameInput.value = profileName.textContent;
@@ -43,7 +43,6 @@ const openPopupNewPlace = () => {
   newPlacesFormValidator.resetValidation();
   popupNewPlace.open();
   popupNewPlace.setEventListeners();
-
 };
 
 const handleCardClick = (name, link) => {
@@ -81,31 +80,54 @@ const renderCard = (item) => {
   templateContainer.prepend(cardElement);
 };
 
-const popupWithForm = new PopupWithForm({
-  popupSelector: ".popup__new-form",
-  handleFormSubmit: (formData) => {
-    const item = {
-      link: formData.linkNameForm,
-      name: formData.titleNameForm
+
+
+
+// const handleCardFormSubmit = (e) => {
+//   e.preventDefault();
+//   const item = {};
+//   item.link = linkNameForm.value;
+//   item.name = titleNameForm.value;
+//   renderCard(item);
+//   newPlacesForm.reset();
+//   newPlacesFormValidator.disableButton();
+// };
+
+
+btnAdd.addEventListener("click", openPopupNewPlace);
+btnEdit.addEventListener("click", openProfilePopup);
+
+profileForm.addEventListener("click", () => {
+  const popupProfileForm = new PopupWithForm({
+    popupSelector: ".popup_profile",
+    handleFormSubmit: (formData) => {
+      const dataValue = {
+        name: formData.username,
+        name: formData.userjob
+    }
+
+    console.log(formData)
+    console.log(dataValue);
   }
-  renderCard(item);
-}
+  });
+  popupProfileForm.setEventListeners()
 });
 
-const handleCardFormSubmit = (e) => {
-  e.preventDefault();
-  const item = {};
-  item.link = linkNameForm.value;
-  item.name = titleNameForm.value;
-  renderCard(item);
-  newPlacesForm.reset();
-  newPlacesFormValidator.disableButton();
-};
-
-profileForm.addEventListener("submit", submitProfileForm);
-newPlacesForm.addEventListener('submit', handleCardFormSubmit);
-btnEdit.addEventListener("click", openProfilePopup);
-btnAdd.addEventListener("click", openPopupNewPlace);
+newPlacesForm.addEventListener("click", () => {
+  const popupNewPlaceForm = new PopupWithForm({
+    popupSelector: ".popup_newplaces",
+    handleFormSubmit: (formData) => {
+      const dataValue = {
+        name: formData.name,
+        link: formData.link
+    }
+    renderCard(item);
+    console.log(formData)
+    console.log(dataValue);
+  }
+  });
+  popupNewPlaceForm.setEventListeners()
+});
 
 
 const profileFormValidator = new FormValidator(validationConfig, ".popup__form_profile");
