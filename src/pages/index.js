@@ -1,5 +1,5 @@
 'use strict'
-import {nameInput, jobInput, templateSelector, btnEdit, btnAdd, profileName, jobName, templateContainer} from '../utils/variables.js'
+import {nameInput, jobInput, templateSelector, btnEdit, btnAdd, profileName, jobName, templateContainer} from '../utils/constants.js'
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import Popup from '../components/Popup.js';
@@ -7,30 +7,40 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
-import {initialCards} from '../components/initialCards.js';
-import {validationConfig} from '../components/validationConfig.js';
+import {initialCards} from '../utils/initialCards.js'
+import {validationConfig} from '../utils/validationConfig.js';
 import '../pages/index.css';
-
-
-const handleCardClick = (name, link) => {
-  const popupWithImage = new PopupWithImage({name, link},'.popup_openimg');
-  popupWithImage.open();
-  popupWithImage.setEventListeners();
-}
 
 const cardList = new Section({
   data: initialCards,
   renderer: (item) => {
     const card = new Card(item, ".template-item", handleCardClick);
-    const cardElement = card.getCard(item);
+    const cardElement = card.getCard();
     cardList.addItem(cardElement);
   }
 }, templateSelector);
+
+const createCard = (item) => {
+  const card = new Card(item, ".template-item", handleCardClick);
+  const cardElement = card.getCard(item);
+  return cardElement;
+}
+
+const renderCard = (item) => {
+  const cardElement = createCard(item);
+  templateContainer.prepend(cardElement);
+};
 
 const userInfo = new UserInfo({
   profileNameSelector: ".profile__title",
   profileJobSelector: ".profile__subtitle"
 });
+
+const popupWithImage = new PopupWithImage('.popup_openimg')
+ const handleCardClick = (name, link) => {
+  popupWithImage.open({name, link});
+}
+
 
 const popupProfileForm = new PopupWithForm(".popup_profile", {
   handleFormSubmit: (userData) => {
@@ -54,9 +64,7 @@ const popupNewPlaceForm = new PopupWithForm(".popup_newplaces", {
       name: formData.name,
       link: formData.link
     }
-    const card = new Card(item, ".template-item", handleCardClick);
-    const cardElement = card.getCard();
-    templateContainer.prepend(cardElement);
+    renderCard(item)
     popupNewPlaceForm.close();
   }}
 )
@@ -64,7 +72,6 @@ const popupNewPlaceForm = new PopupWithForm(".popup_newplaces", {
 btnAdd.addEventListener("click", () => {
   newPlacesFormValidator.resetValidation();
   popupNewPlace.open();
-  popupNewPlace.setEventListeners();
 });
 
 cardList.renderer();
@@ -75,5 +82,7 @@ const profileFormValidator = new FormValidator(validationConfig, ".popup__form_p
 const newPlacesFormValidator = new FormValidator(validationConfig, ".popup__new-form");
 profileFormValidator.enableValidation();
 newPlacesFormValidator.enableValidation();
-popupProfileForm.setEventListeners()
+popupProfileForm.setEventListeners();
 popupNewPlaceForm.setEventListeners();
+popupNewPlace.setEventListeners();
+popupWithImage.setEventListeners();

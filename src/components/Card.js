@@ -12,21 +12,25 @@ export default class Card {
     .cloneNode(true);
   }
 
+  _buttonLike = () => {
+    this._cardElement.querySelector(".elements__likes").classList.toggle("elements__likes_active");
+  }
+
+  _removeCard = () => {
+    this._cardElement.remove();
+    this._cardElement = null;
+  }
+
   _setEventListeners = () => {
     this._cardElement
     .querySelector(".elements__remove")
-    .addEventListener("click", () => {
-      this._cardElement.remove();
-    });
+    .addEventListener("click", this._removeCard);
     this._cardElement
     .querySelector(".elements__likes")
-    .addEventListener("click", (e) => {
-    e.target.classList.toggle("elements__likes_active");
-    });
+    .addEventListener("click", this._buttonLike);
+
     this._cardImage
-    .addEventListener('click', () => {
-    this._handleCardClick(this._name, this._link);
-    });
+    .addEventListener('click', () => this._handleCardClick(this._name, this._link));
   }
 
   getCard = () => {
