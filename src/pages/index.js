@@ -14,8 +14,7 @@ import '../pages/index.css';
 const cardList = new Section({
   data: initialCards,
   renderer: (item) => {
-    const card = new Card(item, ".template-item", handleCardClick);
-    const cardElement = card.getCard();
+    const cardElement = createCard(item);
     cardList.addItem(cardElement);
   }
 }, templateSelector);
