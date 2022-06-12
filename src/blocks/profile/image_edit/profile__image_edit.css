@@ -1,0 +1,22 @@
+.profile__image_edit {
+  position: relative;
+}
+
+.profile__image_edit::before {
+  background-color: #000;
+  content: '';
+  display: block;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transition: .3s;
+  opacity: 0;
+}
+
+.profile__image_edit:hover::before {
+  opacity: .8;
+  background: url('../../../img/avatar-edit.svg') center no-repeat #000;
+}

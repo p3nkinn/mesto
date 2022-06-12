@@ -16,10 +16,12 @@
     <section class="profile">
       <div class="profile__container">
         <div class="profile__item">
-          <img src="<%=require('../src/img/jack-iv-kusto.jpg')%>" alt="Аватар пользователя" class="profile__image">
+          <div class="profile__image_edit">
+          <img src="." alt="Аватар пользователя" class="profile__image">
+        </div>
           <div class="profile__info">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <p class="profile__subtitle">Исследователь океана</p>
+            <h1 class="profile__title"></h1>
+            <p class="profile__subtitle"></p>
             <button type="button" class="profile__edit-button" aria-label="редактировать"></button>
           </div>
           </div>
@@ -30,10 +32,13 @@
       <ul class="elements__list">
         <template class="template-item">
         <li class="elements__item">
-          <img src="." alt="Добавить новое изображение" class="elements__image">
+            <img src="#" alt="Добавить новое изображение" class="elements__image">
           <div class="elements__description">
             <h3 class="elements__title"></h3>
-            <button type="button" class="elements__likes" aria-label="лайк"></button>
+            <div class="elements__hearts">
+              <button type="button" class="elements__likes" aria-label="лайк"></button>
+              <span class="elements__likes_count"></span>
+            </div>
           </div>
           <button type="button" class="elements__remove" aria-label="удалить"></button>
         </li>
@@ -86,6 +91,15 @@
       <button type="button" class="popup__close popup__close_openimg" aria-label="закрыть"></button>
     </div>
   </div>
+  </div>
+  <div class="popup popup_confirm">
+    <div class="popup__container">
+      <form novalidate name="editProfile" action="#" class="popup__form popup__form_confirm">
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button type="submit" class="popup__button">Да</button>
+        <button type="button" class="popup__close popup__close_profile" aria-label="закрыть"></button>
+    </form>
+    </div>
   </div>
 </body>
 </html>
