@@ -94,12 +94,24 @@
   </div>
   <div class="popup popup_confirm">
     <div class="popup__container">
-      <form novalidate name="editProfile" action="#" class="popup__form popup__form_confirm">
+      <form novalidate name="delCard" action="#" class="popup__form popup__form_confirm">
         <h2 class="popup__title">Вы уверены?</h2>
         <button type="submit" class="popup__button">Да</button>
         <button type="button" class="popup__close popup__close_profile" aria-label="закрыть"></button>
     </form>
     </div>
   </div>
+  <div class="popup popup_avatar">
+    <div class="popup__container">
+      <form novalidate name="newAvatar" action="#" class="popup__form popup__new-avatar">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <label class="popup__input-error">
+      <input id="link-input" name="link" placeholder="Ссылка на картинку" required type="url" class="popup__input popup__input_type_link">
+      <span class="link-input-error popup__error popup__error_visible"></span>
+      </label>
+      <button type="submit" class="popup__button">Сохранить</button>
+      <button type="button" class="popup__close popup__close_newavatar" aria-label="закрыть"></button>
+    </form>
+    </div>
 </body>
 </html>

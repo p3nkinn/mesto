@@ -18,13 +18,13 @@ export default class Api {
       .then(this._handleResponse)
       }
 
-    addNewCard(formData) {
+    addNewCard(userData) {
       return fetch(`${this._baseUrl}/cards`, {
         method: 'POST',
         headers: this._headers,
         body: JSON.stringify({
-          name: formData.name,
-          link: formData.link
+          name: userData.name,
+          link: userData.link
         })
       })
       .then(this._handleResponse)
@@ -73,5 +73,15 @@ export default class Api {
       .then(this._handleResponse)
     }
 
+    addNewAvatar(userData) {
+      return fetch(`${this._baseUrl}/users/me/avatar`, {
+        method: "PATCH",
+        headers: this._headers,
+        body: JSON.stringify({
+          avatar: userData.link
+        })
+      })
+      .then(this._handleResponse)
+    }
     }
 

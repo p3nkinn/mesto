@@ -27,29 +27,36 @@ export default class Card {
     }
   }
 
-  checkLike = () => {
-    const checkLikes = (item) => {
-      item._id == this._userData._id;
+  isLike = () => {
+    return this._data.likes.find(likes => likes._id === this._userData);
+  }
+
+  _checkLike = () => {
+    if (this.isLike()) {
+      this.addLikes();
+    } else {
+      this.delLikes();
     }
-    const liked = this._data.likes.some(checkLikes);
-    return liked;
+  }
+
+  addLikes = () => {
+    this._cardElement.querySelector(".elements__likes").classList.add("elements__likes_active");
+  }
+
+  delLikes = () => {
+    this._cardElement.querySelector(".elements__likes").classList.remove("elements__likes_active");
   }
 
   setLikes = (data) => {
     this._data = data;
     this._cardElement.querySelector(".elements__likes_count").textContent = this._data.likes.length;
-    if (this.checkLike()) {
-      this._cardElement.querySelector(".elements__likes").classList.add("elements__likes_active");
-
-    } else {
-      this._cardElement.querySelector(".elements__likes").classList.remove("elements__likes_active");
-    }
   }
+
 
   _setEventListeners = () => {
     this._cardElement
     .querySelector(".elements__remove")
-    .addEventListener("click", () => this._handleCardRemove(this._data._id, this._cardElement));
+    .addEventListener("click", () => this._handleCardRemove(this._cardElement, this._data._id));
     this._cardElement
     .querySelector(".elements__likes")
     .addEventListener("click", () => this._handleCardLikes(this._data._id));
@@ -67,6 +74,7 @@ export default class Card {
     this._setEventListeners();
     this._checkRemove();
     this.setLikes(this._data);
+    this._checkLike();
     return this._cardElement;
   }
 }
