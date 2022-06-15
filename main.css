@@ -7,7 +7,7 @@
 @media screen and (max-width:610px){.header__image{height:24px;width:103px}}
 .profile{padding-top:40px}@media screen and (max-width:610px){.profile{padding-top:42px}}
 .profile__container{align-items:center;display:flex;justify-content:space-between}@media screen and (max-width:910px){.profile__container{padding:0 15px}}@media screen and (max-width:768px){.profile__container{flex-direction:column}}
-.profile__image_edit{position:relative}.profile__image_edit:before{background-color:#000;bottom:0;content:"";cursor:pointer;display:block;left:0;opacity:0;position:absolute;right:0;top:0;transition:.3s}.profile__image_edit:hover:before{background:url(a086f758840ae814ecde.svg) 50% no-repeat #000;opacity:.8}
+.profile__redaction{position:relative}.profile__redaction:before{background-color:#000;bottom:0;content:"";cursor:pointer;display:block;left:0;opacity:0;position:absolute;right:0;top:0;transition:.3s}.profile__redaction:hover:before{background:url(a086f758840ae814ecde.svg) 50% no-repeat #000;opacity:.8}
 .profile__image{border-radius:50%;height:120px;margin-right:0;-o-object-fit:cover;object-fit:cover;width:120px}@media screen and (max-width:768px){.profile__image{margin-right:0}}
 .profile__info{display:grid;grid-template-areas:"title edit" "subtitle .";margin-left:30px;width:336px}@media screen and (max-width:768px){.profile__info{margin-top:26px}}@media screen and (max-width:610px){.profile__info{width:218px}}
 .profile__title{color:#fff;font-size:42px;font-weight:500;grid-area:title;line-height:48px;margin:0 18px 0 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media screen and (max-width:610px){.profile__title{font-size:27px;line-height:33px;margin-right:10px;text-align:center}}
