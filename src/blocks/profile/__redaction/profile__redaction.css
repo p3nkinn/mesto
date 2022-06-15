@@ -1,8 +1,8 @@
-.profile__image_edit {
+.profile__redaction {
   position: relative;
 }
 
-.profile__image_edit::before {
+.profile__redaction::before {
   background-color: #000;
   content: '';
   display: block;
@@ -16,7 +16,7 @@
   opacity: 0;
 }
 
-.profile__image_edit:hover::before {
+.profile__redaction:hover::before {
   opacity: .8;
   background: url('../../../img/avatar-edit.svg') center no-repeat #000;
 }

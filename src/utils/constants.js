@@ -8,7 +8,7 @@ export const
   profileImage = document.querySelector(".profile__image"),
   jobName = document.querySelector(".profile__subtitle"),
   btnAdd = document.querySelector(".profile__add-button"),
-  btnAvatar = document.querySelector(".profile__image_edit"),
+  btnAvatar = document.querySelector(".profile__redaction"),
   templateContainer = document.querySelector(".elements__list"),
   templateSelector = ".elements__list",
   cardSelector = ".template-item";
