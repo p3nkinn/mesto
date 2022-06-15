@@ -1,5 +1,5 @@
 'use strict'
-import {nameInput, jobInput, btnAvatar, templateSelector, btnEdit, btnAdd, templateContainer, cardSelector} from '../utils/constants.js'
+import {nameInput, jobInput, btnAvatar, templateSelector, btnEdit, btnAdd} from '../utils/constants.js'
 import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import Popup from '../components/Popup.js';
@@ -21,37 +21,43 @@ const api = new Api({
   }
 });
 
-const renderLoading = (popup, isLoading) => {
+let userData = null;
+
+const renderLoading = (popup, isLoading, defaultName) => {
   const button = document.querySelector(popup).querySelector('.popup__button');
-  if (isLoading) {
-    button.textContent = 'Загрузка...';
+  if (!isLoading) {
+    button.textContent = defaultName;
   } else {
     button.textContent = 'Сохранить...';
   }
 }
 
-Promise.all([api.getProfileInfo(), api.getInitialCards()])
-.then(([userData, initialCards]) => {
+const cardList = new Section({
+  renderer: (item) => {
+    const card = createCard(item, ".template-item");
+    cardList.addItem(card, 'end');
+  }
+}, templateSelector)
+
+Promise.all([api.getInitialCards(), api.getProfileInfo()])
+.then(([initialCards, userData]) => {
   userInfo.setUserInfo({
     profileName: userData.name,
     profileAboutName: userData.about,
     profileImage: userData.avatar
   })
-  const id = userData._id;
-  const cardList = new Section({
-    data: initialCards,
-    renderer: (item) => {
-      const card = createCard(item, ".template-item", userData)
-      card.checkId(id);
-      const cardElement = card.getCard();
-      cardList.addItem(cardElement);
-    }
-  }, templateSelector);
-  cardList.renderer();
+  getIdUser(userData._id)
+  cardList.setRenderedItems(initialCards)
+  cardList.renderer(userData);
 })
 
-const createCard = (item, cardSelector, userData) => {
+const getIdUser = (idUser) => {
+  userData = idUser;
+};
+
+const createCard = (item, cardSelector) => {
   const card = new Card(item, cardSelector, {
+    userData: userData,
     handleCardClick: (name, link) => {
       popupWithImage.open({name, link});
     },
@@ -81,31 +87,8 @@ const createCard = (item, cardSelector, userData) => {
     },
     userData: userData
   });
-
-  return card;
+  return card.getCard();
 }
-
-// const initCard = new Section({
-//   data: [],
-//   renderer: (item, userData) => {
-//     const card = createCard(item, ".template-item", userData);
-//     const cardElement = card.getCard();
-//     initCard.addItem(cardElement);
-//   }
-// }, templateSelector)
-
-const addCard = (item, userData) => {
-  const card = createCard(item, ".template-item", userData);
-  const cardElement = card.getCard(item);
-  return cardElement;
-
-}
-
-const renderCard = (item, userData) => {
-  const cardElement = addCard(item, userData);
-  templateContainer.prepend(cardElement);
-};
-
 
 const popupProfileForm = new PopupWithForm(".popup_profile", {
   handleFormSubmit: (userData) => {
@@ -119,11 +102,10 @@ const popupProfileForm = new PopupWithForm(".popup_profile", {
       }
       userInfo.setUserInfo(newData);
       openprofilePopup.close();
-      renderLoading(".popup_profile", false);
     })
     .catch(err => console.log(`Ошибка при обновлении информации о пользователе: ${err}`))
     .finally(() => {
-      renderLoading(".popup_profile", false);
+      renderLoading(".popup_profile", false, 'Сохранить');
     })
 }
 });
@@ -146,25 +128,21 @@ btnEdit.addEventListener("click", () => {
 const popupNewPlaceForm = new PopupWithForm(".popup_newplaces", {
   handleFormSubmit: (formData) => {
     renderLoading(".popup_newplaces", true);
-    api.addNewCard(formData)
-    .then(formData => {
-      const item = {
-        name: formData.name,
-        link: formData.link,
-        owner: formData.owner._id,
-        likes: formData.likes,
-      }
+    api.addNewCard({
+      name: formData.name,
+      link: formData.link
+    })
+    .then(item => {
       const card = createCard(item, ".template-item");
-      const cardElement = card.getCard()
-      templateContainer.prepend(cardElement);
-      renderLoading(".popup_newplaces", false);
+      cardList.addItem(card, 'start');
+      renderLoading(".popup_newplaces", true);
       popupNewPlaceForm.close();
     })
     .catch(err => {
       console.log(`${err}`);
     })
     .finally(() => {
-      renderLoading(".popup_newplaces", false);
+      renderLoading(".popup_newplaces", false, 'Сохранить');
     })
   }}
 )
@@ -183,13 +161,12 @@ const popupNewAvatar = new PopupWithForm(".popup_avatar", {
         profileImage: userData.avatar
       })
       popupNewAvatar.close();
-      renderLoading(".popup_avatar", false);
     })
     .catch(err => {
       console.log(`${err}`);
     })
     .finally(() => {
-      renderLoading(".popup_avatar", false);
+      renderLoading(".popup_avatar", false, 'Сохранить');
     })
   }
 })

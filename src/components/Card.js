@@ -16,10 +16,6 @@ export default class Card {
     .cloneNode(true);
   }
 
-  checkId = (id) => {
-    this._userData = id;
-  }
-
   _checkRemove = () => {
     if(this._data.owner._id == this._userData) {
       this._cardElement
@@ -28,7 +24,7 @@ export default class Card {
   }
 
   isLike = () => {
-    return this._data.likes.find(likes => likes._id === this._userData);
+    return this._data.likes.some(likes => likes._id === this._userData);
   }
 
   _checkLike = () => {

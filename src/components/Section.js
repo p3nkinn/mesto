@@ -5,13 +5,21 @@ export default class Section {
     this._container = document.querySelector(containerSelector);
   }
 
-  renderer(userData) {
+  renderer() {
     this._initialCards.forEach(item => {
-      this._renderer(item, userData);
+      this._renderer(item);
     })
   }
 
-  addItem(element) {
-    this._container.append(element);
+  setRenderedItems(data) {
+    this._initialCards = data;
+  }
+
+  addItem (element, place) {
+    if (place === 'start') {
+      this._container.prepend(element);
+  } else if (place === 'end') {
+      this._container.append(element);
+    }
   }
 }
