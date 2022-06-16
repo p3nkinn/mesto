@@ -21,7 +21,4 @@ export default class PopupWithSubmit extends Popup {
     this._card = item;
   }
 
-  close() {
-    super.close();
-  }
 }

@@ -7,6 +7,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithSubmit from '../components/PopupWithSubmit.js';
 import UserInfo from '../components/UserInfo.js';
+import {renderLoading} from '../utils/renderLoading.js';
 import FormValidator from '../components/FormValidator.js';
 import {validationConfig} from '../utils/validationConfig.js';
 import Api from '../components/Api.js';
@@ -21,16 +22,7 @@ const api = new Api({
   }
 });
 
-let userData = null;
-
-const renderLoading = (popup, isLoading, defaultName) => {
-  const button = document.querySelector(popup).querySelector('.popup__button');
-  if (!isLoading) {
-    button.textContent = defaultName;
-  } else {
-    button.textContent = 'Сохранить...';
-  }
-}
+let userId = null;
 
 const cardList = new Section({
   renderer: (item) => {
@@ -47,17 +39,15 @@ Promise.all([api.getInitialCards(), api.getProfileInfo()])
     profileImage: userData.avatar
   })
   getIdUser(userData._id)
-  cardList.setRenderedItems(initialCards)
-  cardList.renderer(userData);
+  cardList.rendererItems(initialCards);
 })
 
 const getIdUser = (idUser) => {
-  userData = idUser;
+  userId = idUser;
 };
 
 const createCard = (item, cardSelector) => {
   const card = new Card(item, cardSelector, {
-    userData: userData,
     handleCardClick: (name, link) => {
       popupWithImage.open({name, link});
     },
@@ -85,7 +75,7 @@ const createCard = (item, cardSelector) => {
           });
       }
     },
-    userData: userData
+    userData: userId
   });
   return card.getCard();
 }
@@ -101,7 +91,7 @@ const popupProfileForm = new PopupWithForm(".popup_profile", {
         profileImage: data.avatar
       }
       userInfo.setUserInfo(newData);
-      openprofilePopup.close();
+      popupProfileForm.close();
     })
     .catch(err => console.log(`Ошибка при обновлении информации о пользователе: ${err}`))
     .finally(() => {
@@ -122,7 +112,7 @@ btnEdit.addEventListener("click", () => {
   const userData = userInfo.getUserInfo();
   nameInput.value = userData.profileName;
   jobInput.value = userData.profileAboutName;
-  openprofilePopup.open()
+  popupProfileForm.open();
 });
 
 const popupNewPlaceForm = new PopupWithForm(".popup_newplaces", {
@@ -142,14 +132,14 @@ const popupNewPlaceForm = new PopupWithForm(".popup_newplaces", {
       console.log(`${err}`);
     })
     .finally(() => {
-      renderLoading(".popup_newplaces", false, 'Сохранить');
+      renderLoading(".popup_newplaces", false, 'Создать');
     })
   }}
 )
 
 btnAdd.addEventListener("click", () => {
   newPlacesFormValidator.resetValidation();
-  popupNewPlace.open();
+  popupNewPlaceForm.open();
 });
 
 const popupNewAvatar = new PopupWithForm(".popup_avatar", {
@@ -172,6 +162,7 @@ const popupNewAvatar = new PopupWithForm(".popup_avatar", {
 })
 
 btnAvatar.addEventListener("click", () => {
+  newAvatarFormValidator.resetValidation()
   popupNewAvatar.open();
 })
 
@@ -188,20 +179,17 @@ const popupWithSubmit = new PopupWithSubmit('.popup_confirm', {
   }
 });
 
-const popupNewPlace = new Popup(".popup_newplaces");
-const openprofilePopup = new Popup(".popup_profile");
 const popupWithImage = new PopupWithImage('.popup_openimg');
 const profileFormValidator = new FormValidator(validationConfig, ".popup__form_profile");
 const newPlacesFormValidator = new FormValidator(validationConfig, ".popup__new-form");
 const newAvatarFormValidator = new FormValidator(validationConfig, ".popup__new-avatar");
-const deleteCard = new FormValidator(validationConfig, ".popup__form_confirm");
+const confirmFormValidator = new FormValidator(validationConfig, ".popup__form_confirm");
 profileFormValidator.enableValidation();
 newPlacesFormValidator.enableValidation();
 newAvatarFormValidator.enableValidation();
-deleteCard.enableValidation();
+confirmFormValidator.enableValidation();
 popupProfileForm.setEventListeners();
 popupNewPlaceForm.setEventListeners();
-popupNewPlace.setEventListeners();
 popupWithImage.setEventListeners();
 popupWithSubmit.setEventListeners();
 popupNewAvatar.setEventListeners();

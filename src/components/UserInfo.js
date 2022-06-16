@@ -14,9 +14,13 @@ export default class UserInfo {
   }
 
   setUserInfo(userData) {
-    this._profileNameSelector.textContent = userData.profileName,
-    this._profileJobSelector.textContent = userData.profileAboutName
-    this._profileImage.src = userData.profileImage
+    if (userData.profileName, userData.profileAboutName, userData.profileImage) {
+      this._profileNameSelector.textContent = userData.profileName,
+      this._profileJobSelector.textContent = userData.profileAboutName
+      this._profileImage.src = userData.profileImage
+    } else {
+      console.log('Ошибка данных');
+    }
   }
 
   setAvatar(userData) {
