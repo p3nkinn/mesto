@@ -14,12 +14,12 @@ export default class UserInfo {
   }
 
   setUserInfo(userData) {
-    if (userData.profileName, userData.profileAboutName, userData.profileImage) {
+    if (userData) {
       this._profileNameSelector.textContent = userData.profileName,
       this._profileJobSelector.textContent = userData.profileAboutName
       this._profileImage.src = userData.profileImage
     } else {
-      console.log('Ошибка данных');
+      console.log('Ошибка передачи данных');
     }
   }
 
